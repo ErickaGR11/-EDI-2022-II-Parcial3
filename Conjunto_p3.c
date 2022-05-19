@@ -67,10 +67,11 @@ typedef struct set{
      printf("\nDespues de obtener la Union\n");
      printSet(setC);
 
-     init_set(&setC);
-     //  remover(&setC, 5);
-     //   int e= exist(setC,  5);
-     //  printf("e= %d ", e);
+     int a= remover(&setC,7);
+     printf("removio?= %d\n", a);
+     printSet(setC);
+     int e= exist(setC,  7);
+      printf("existe?= %d ", e);
 }
 void Union(Set set, Set setB, Set *setC) {
 //TODOS LOS ELEMENTOS DE SETA Y SETB SIN REPETIR
@@ -195,7 +196,7 @@ int init_set (Set *s){
     int index= find(*s, value);
     //find regresa -1 si no encontro valor y sisi regresa posicion
 
-    if (index!=-1){ //si lo encontro
+    if (index==1){ //si lo encontro
         s->size--;
         for (; index <= s->size-1 ; ++index) {
             s->data[index]=s->data[index+1];
