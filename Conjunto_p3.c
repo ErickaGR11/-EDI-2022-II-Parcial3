@@ -20,6 +20,8 @@ int add(Set *s, int value);
 int init_set (Set *s);
 int find(Set set, int value);
 int remover(Set *s, int value);
+int removerfirst(Set *s, int value);
+int removerlast(Set *s, int value);
 int exist(Set set, int value);
 void intersect(Set setA, Set setB, Set *setC);
 void printSet(Set set);
@@ -71,7 +73,14 @@ int main(){
     printf("removio?= %d\n", a);
     printSet(setC);
     int e= exist(setC,  7);
-    printf("existe?= %d ", e);
+    printf("existe?= %d\n", e);
+
+   int r= removerfirst(&setC,  5);
+    printf("removio first?= %d\n", r);
+  //  printSet(setC);
+    int r2=removerlast(&setC, 23);
+    printf("removio last?= %d\n", r2);
+    printSet(setC);
 }
 void Union(Set set, Set setB, Set *setC) {
 //TODOS LOS ELEMENTOS DE SETA Y SETB SIN REPETIR
@@ -205,7 +214,32 @@ int remover(Set *s, int value){
     }
     return -1;
 }
+int removerfirst(Set *s, int value){
+    int index= find(*s, value);
+    //find regresa -1 si no encontro valor y sisi regresa posicion
 
+    if (index==0){ //si index es igual a la primer posicion es de cir primer valor que lo elimine
+        s->size--;
+        for (; index <= s->size-1 ; ++index) {
+            s->data[index]=s->data[index+1];
+        }
+        return 1;
+    }
+    return -1;
+}
+int removerlast(Set *s, int value){
+    int index= find(*s, value);
+    //find regresa -1 si no encontro valor y sisi regresa posicion
+
+    if (index==s->size-1){ //si index es igual al tamaño-1 es decir al ultimo valor que lo elimine
+        s->size--;
+        for (; index <= s->size-1 ; ++index) {
+            s->data[index]=s->data[index+1];
+        }
+        return 1;
+    }
+    return -1;
+}
 int exist(Set set, int value){
     int index= find(set, value);
 //si no existe el valor regresar 0 si no regresar 1
