@@ -1,14 +1,14 @@
-  //set conjunto
-  //grupo de elementos que no se repiten
-  //2. operaciones:
-  //2.1 agregar el conjunto- verificar que el elemento no exista dentro del conjunto, si hay espacio
-  //2.2 eliminar un elemento de un conjunto- exista-elimina
-  //2.3 pertenencia-elemento x pertenece al conjunto
-  //3. operaciones entre conjuntos- dado dos conjuntos
-  //3.1 calcular su interseccion . valores comunes a los dos conjuntos
-  //3.2 union- todos los elementos de A- todos los elementos de B sin repetirlos
-  // 3.3 complemento-complemento de A. Todos los elementos que no pertenezcan a A
-  //3.4 Diferencia- A-B Tod lo que este en A que no este en B
+//set conjunto
+//grupo de elementos que no se repiten
+//2. operaciones:
+//2.1 agregar el conjunto- verificar que el elemento no exista dentro del conjunto, si hay espacio
+//2.2 eliminar un elemento de un conjunto- exista-elimina
+//2.3 pertenencia-elemento x pertenece al conjunto
+//3. operaciones entre conjuntos- dado dos conjuntos
+//3.1 calcular su interseccion . valores comunes a los dos conjuntos
+//3.2 union- todos los elementos de A- todos los elementos de B sin repetirlos
+// 3.3 complemento-complemento de A. Todos los elementos que no pertenezcan a A
+//3.4 Diferencia- A-B Tod lo que este en A que no este en B
 
 #include <stdio.h>
 #define SET_CAPACITY 10
@@ -16,17 +16,17 @@ typedef struct set{
     int data[SET_CAPACITY];
     int size; //cuantos elementos se han insertado en el conjunto
 }Set;
-  int add(Set *s, int value);
-  int init_set (Set *s);
-  int find(Set set, int value);
-  int remover(Set *s, int value);
-  int exist(Set set, int value);
-  void intersect(Set setA, Set setB, Set *setC);
-  void printSet(Set set);
-  void Union(Set set, Set setB, Set *setC);
-  void Complement(Set set, Set setB, Set *setC);
-  void DifSet(Set set, Set setB, Set *setC);
- int main(){
+int add(Set *s, int value);
+int init_set (Set *s);
+int find(Set set, int value);
+int remover(Set *s, int value);
+int exist(Set set, int value);
+void intersect(Set setA, Set setB, Set *setC);
+void printSet(Set set);
+void Union(Set set, Set setB, Set *setC);
+void Complement(Set set, Set setB, Set *setC);
+void DifSet(Set set, Set setB, Set *setC);
+int main(){
     Set set; Set setB; Set setC;
 
     init_set(&set);
@@ -36,42 +36,42 @@ typedef struct set{
     add(&set, 5);
     add(&set, 7);
 
-     init_set(&setB);
-     add(&setB, 10);
-     add(&setB, 11);
-     add(&setB, 21);
-     add(&setB, 5);
+    init_set(&setB);
+    add(&setB, 10);
+    add(&setB, 11);
+    add(&setB, 21);
+    add(&setB, 5);
 
-     init_set(&setC);
-     printSet(set);
-     printSet(setB);
-     printSet(setC);
+    init_set(&setC);
+    printSet(set);
+    printSet(setB);
+    printSet(setC);
 
-     intersect(set,  setB,  &setC);
-     printf("\nDespues de obtener la interseccion\n");
-     printSet(setC);
+    intersect(set,  setB,  &setC);
+    printf("\nDespues de obtener la interseccion\n");
+    printSet(setC);
 
-     init_set(&setC);
-     Complement(set, setB, &setC); //10, 21
-     printf("\nDespues de obtener el complemento\n");
-     printSet(setC);
+    init_set(&setC);
+    Complement(set, setB, &setC); //10, 21
+    printf("\nDespues de obtener el complemento\n");
+    printSet(setC);
 
-     init_set(&setC);
-     DifSet(set,  setB,  &setC);
-     printf("\nDespues de obtener la diferencia\n");
-     printSet(setC);
+    init_set(&setC);
+    DifSet(set,  setB,  &setC);
+    printf("\nDespues de obtener la diferencia\n");
+    printSet(setC);
 
 
-     init_set(&setC);
-     Union(set,  setB,  &setC);
-     printf("\nDespues de obtener la Union\n");
-     printSet(setC);
+    init_set(&setC);
+    Union(set,  setB,  &setC);
+    printf("\nDespues de obtener la Union\n");
+    printSet(setC);
 
-     int a= remover(&setC,7);
-     printf("removio?= %d\n", a);
-     printSet(setC);
-     int e= exist(setC,  7);
-      printf("existe?= %d ", e);
+    int a= remover(&setC,7);
+    printf("removio?= %d\n", a);
+    printSet(setC);
+    int e= exist(setC,  7);
+    printf("existe?= %d ", e);
 }
 void Union(Set set, Set setB, Set *setC) {
 //TODOS LOS ELEMENTOS DE SETA Y SETB SIN REPETIR
@@ -121,17 +121,17 @@ void DifSet(Set set, Set setB, Set *setC) {
     }
 }
 void intersect(Set set, Set setB, Set *setC){
-     int e;
+    int e;
     for (int index = 0; index < set.size; ++index) {
         printf("SetA.data [%d]= %d\n", index, set.data[index]);
-         e= exist(setB, set.data[index]);
-      if (e==1)
-      {
-          printf("%d existe en B\n", set.data[index]);
-          add(setC, set.data[index]);
-      }
+        e= exist(setB, set.data[index]);
+        if (e==1)
+        {
+            printf("%d existe en B\n", set.data[index]);
+            add(setC, set.data[index]);
+        }
     }
- }
+}
 
 int add(Set *s, int value) {
     int exists;
@@ -142,7 +142,7 @@ int add(Set *s, int value) {
         //regresa -1 si no lo encontro y si no regrsa el indice
         exists = find(*s, value);
 
-        if (exists!=1) {//no encontro el valor
+        if (exists==-1) {//no encontro el valor
 
             //insertar el valor de forma ordenada
             //revisar desde size-1 mientras que el valor este en la posicion
@@ -181,7 +181,7 @@ int find(Set set, int value){
     }
 
     if(encontrado == 1)
-        return 1;
+        return mitad;
     else{
         return -1;
     }
@@ -192,7 +192,7 @@ int init_set (Set *s){
     return 1;
 }
 
-  int remover(Set *s, int value){
+int remover(Set *s, int value){
     int index= find(*s, value);
     //find regresa -1 si no encontro valor y sisi regresa posicion
 
@@ -203,20 +203,20 @@ int init_set (Set *s){
         }
         return 1;
     }
-      return -1;
- }
+    return -1;
+}
 
- int exist(Set set, int value){
-     int index= find(set, value);
+int exist(Set set, int value){
+    int index= find(set, value);
 //si no existe el valor regresar 0 si no regresar 1
-     if (index==-1)
-         return 0;
-     return 1;
- }
-  void printSet(Set set){
-      printf("[");
-      for (int index = 0; index < set.size; ++index) {
-          printf("  %d  ", set.data[index]);
-      }
-      printf("]\n");
- }
+    if (index==-1)
+        return 0;
+    return 1;
+}
+void printSet(Set set){
+    printf("[");
+    for (int index = 0; index < set.size; ++index) {
+        printf("  %d  ", set.data[index]);
+    }
+    printf("]\n");
+}
