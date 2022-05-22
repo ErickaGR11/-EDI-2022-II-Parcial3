@@ -67,7 +67,7 @@ int main(){
     printf("\nDespues de obtener la Union\n");
     printSet(setC);
 
-    int a= remover(&setC,7);
+    int a= remover(&setC,16);
     printf("removio?= %d\n", a);
     printSet(setC);
     int e= exist(setC,  7);
@@ -196,7 +196,7 @@ int remover(Set *s, int value){
     int index= find(*s, value);
     //find regresa -1 si no encontro valor y sisi regresa posicion
 
-    if (index==1){ //si lo encontro
+    if (index!=-1){ //si lo encontro
         s->size--;
         for (; index <= s->size-1 ; ++index) {
             s->data[index]=s->data[index+1];
